@@ -4,9 +4,10 @@
 |email             |   string   | unique: true  null:false|
 |encrypted_password|   string   |    NOT NULL             |
 |nickname          |   string   |    NOT NULL             |
-|name              |   string   |    NOT NULL             |
-|name_full_width   |   string   |    NOT NULL             |
-|name_katakana     |   string   |    NOT NULL             |
+|last_name         |   string   |    NOT NULL             |
+|last_name_kana    |   string   |　  NOT NULL             |
+|first_name        |   string   |    NOT NULL             |
+|first_name_kana   |   string   |    NOT NULL             |
 |birthday          |   string   |    NOT NULL             |
 
 ### Association
@@ -19,7 +20,7 @@
 |description_item  |    text    |    NOT NULL             |
 |title             |   string   |    NOT NULL             |
 |price             |   integer  |    NOT NULL             |
-|user              | references |                         |
+|user              | references |   foreign_key: true     |
 |category_id       |   integer  |    NOT NULL             |
 |product_status_id |   integer  |    NOT NULL             |
 |shipping_id       |   integer  |    NOT NULL             |
@@ -34,8 +35,8 @@
 ##ordersテーブル
 |  Column     | Type       | Options                  |
 | ----------- | ---------- |  ------------------------|
-|user         | references |                          |
-|item         | references |                          |
+|user         | references |   foreign_key: true      |
+|item         | references |   foreign_key: true      |
 
 ### Association
 - belongs_to :user
@@ -49,9 +50,9 @@
 |area_id      |   integer  |     NOT NULL           |
 |municipality |   string   |     NOT NULL           |
 |address      |   string   |     NOT NULL           |
-|building     |   string   |     NOT NULL           |
+|building     |   string   |                        |
 |phone_number |   string   |     NOT NULL           |
-|order        | references |                        |
+|order        | references |     foreign_key: true  |
 
 
 ### Association
