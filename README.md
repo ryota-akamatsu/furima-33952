@@ -35,7 +35,6 @@
 |  Column  | Type       | Options       |
 | -------- | ---------- | --------------|
 |user      | references |               |
-|items     | references |               |
 
 ### Association
 - belongs_to :users
