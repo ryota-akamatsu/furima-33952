@@ -1,37 +1,59 @@
 #usersテーブル
-|  Column  | Type       | Options       |
-| -------- | ---------- | --------------|
-|email     |   string   |    NOT NULL   |
-|password  |   string   |    NOT NULL   |
-|name      |   string   |    NOT NULL   |
-|profile   |    text    |    NOT NULL   |
-|occupation|    text    |    NOT NULL   |
-|position  |    text    |    NOT NULL   |
+|  Column          | Type       | Options                 |
+| ---------------- | ---------- | ------------------------|
+|email             |   string   | unique: true  null:false|
+|encrypted_password|   string   |    NOT NULL             |
+|nickname          |   string   |    NOT NULL             |
+|last_name         |   string   |    NOT NULL             |
+|last_name_kana    |   string   |　  NOT NULL             |
+|first_name        |   string   |    NOT NULL             |
+|first_name_kana   |   string   |    NOT NULL             |
+|birthday          |   string   |    NOT NULL             |
 
 ### Association
-- has_many :prototypes
-- has_many :comments
+- has_many :items
+- has_many :orders
 
-##commentsテーブル
-|  Column  | Type       | Options       |
-| -------- | ---------- | --------------|
-|text      |   string   |    NOT NULL   |
-|user      | references |               |
-|prototype | references |               |
+##itemsテーブル
+|  Column          | Type       | Options                 |
+| ---------------- | ---------- |  -----------------------|
+|description_item  |    text    |    NOT NULL             |
+|title             |   string   |    NOT NULL             |
+|price             |   integer  |    NOT NULL             |
+|user              | references |   foreign_key: true     |
+|category_id       |   integer  |    NOT NULL             |
+|product_status_id |   integer  |    NOT NULL             |
+|shipping_id       |   integer  |    NOT NULL             |
+|delivery_date_id  |   integer  |    NOT NULL             |
+|area_id           |   integer  |    NOT NULL             |
 
-### Association
-- has_many   :prototypes
-- belongs_to :users
-
-##prototypesテーブル
-|  Column  | Type       | Options       |
-| -------- | ---------- | --------------|
-|title     |   string   |    NOT NULL   |
-|catch_copy|    text    |    NOT NULL   |
-|concept   |    text    |    NOT NULL   |
-|image     |            |               |
-|user      | references |               |
 
 ### Association
-- belongs_to :users
-- has_many   :comments
+- has_one    :order
+- belongs_to :user
+
+##ordersテーブル
+|  Column     | Type       | Options                  |
+| ----------- | ---------- |  ------------------------|
+|user         | references |   foreign_key: true      |
+|item         | references |   foreign_key: true      |
+
+### Association
+- belongs_to :user
+- belongs_to :item
+- has_one    :address
+
+##addressテーブル
+|  Column     | Type      | Options                 |
+| ----------- | ---------- | -----------------------|
+|postal_code  |   integer  |     NOT NULL           |
+|area_id      |   integer  |     NOT NULL           |
+|municipality |   string   |     NOT NULL           |
+|address      |   string   |     NOT NULL           |
+|building     |   string   |                        |
+|phone_number |   string   |     NOT NULL           |
+|order        | references |     foreign_key: true  |
+
+
+### Association
+- belongs_to  :order
