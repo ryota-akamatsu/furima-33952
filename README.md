@@ -25,7 +25,6 @@
 |delivery_date  |   string   |    NOT NULL   |
 |area           |   string   |    NOT NULL   |
 
-|p | references |               |
 
 ### Association
 - has_one    :orders
@@ -35,6 +34,7 @@
 |  Column  | Type       | Options       |
 | -------- | ---------- | --------------|
 |user      | references |               |
+|items     | references |               |
 
 ### Association
 - belongs_to :users
