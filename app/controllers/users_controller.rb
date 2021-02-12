@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
-def
-  
+def new
+  @user = User.all
+
 end
 end
