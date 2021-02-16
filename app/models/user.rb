@@ -6,7 +6,6 @@ class User < ApplicationRecord
          with_options presence: true do
          validates :birthday
          validates :nickname
-         validates :encrypted_password,:password,:password_confirmation,length:{minimum:7},format:{with: /(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d]{7,}/}
          validates :last_name,presence: {message: 'last name cant be black'}
          validates :last_name_kana,presence: {message: 'last name kana cant be black'}
          validates :first_name,presence: {message: 'first name cant be black'}
@@ -22,4 +21,4 @@ class User < ApplicationRecord
                format: {with:/[\p{katakana}　ー－&&[^ -~｡-ﾟ]]+/,message: 'Full-width characters'}
         end
       end
-      
+
