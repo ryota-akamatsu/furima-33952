@@ -2,10 +2,7 @@ class ApplicationController < ActionController::Base
   before_action :basic_auth
   before_action :configure_permitted_parameters, if: :devise_controller?
 
-  def create
-    @user　＝　User.find(params[:prototype_id])
-
-  end
+  
 
 
   private
