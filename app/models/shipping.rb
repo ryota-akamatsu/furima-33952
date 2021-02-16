@@ -1,0 +1,1 @@
+class  Shipping < ActiveHash::Base

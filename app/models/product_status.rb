@@ -1,0 +1,1 @@
+class  Product_status < ActiveHash::Base
