@@ -1,5 +1,6 @@
 class Item < ApplicationRecord
   belongs_to :user
+  has_one_attached :image
 
   with_options presence: true do
     validates  :description_item
@@ -10,5 +11,5 @@ class Item < ApplicationRecord
     validates  :shipping_id
     validates  :delivery_date_id
     validates  :area_id
-
+  end
 end
