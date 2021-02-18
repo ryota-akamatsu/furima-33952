@@ -9,17 +9,20 @@ class Item < ApplicationRecord
   belongs_to :area
 
   with_options presence: true do
-    validates :image,presence:  {message: 'Image cant be black'}
-    validates :description_item,presence:  {message: 'Description_item cant be black'}
-    validates :title,presence:  {message: 'Title cant be black'}
-    validates :price,presence:  {message: 'Price cant be black'}
-    validates :category_id, numericality: { other_than: 1 ,message: 'Category cant be black'} 
-    validates :product_status_id, numericality: { other_than: 1 ,message: 'Product_stayus cant be black'} 
-    validates :shipping_id, numericality: { other_than: 1 ,message: 'Shipping cant be black'} 
-    validates :delivery_date_id, numericality: { other_than: 1 ,message: 'Delivery_date cant be black'} 
-    validates :area_id, numericality: { other_than: 1 ,message: 'Area cant be black'} 
-
+    validates :image
+    validates :description_item
+    validates :title
+    validates :price
+    
     validates_inclusion_of :price,in: 300..9999999, message: 'out of setting range'
     validates :price,format:{with:/\A[0-9]+\z/}
+  
+  end
+  with_options numericality:  {other_than: 1}do
+    validates :category_id 
+    validates :product_status_id
+    validates :shipping_id
+    validates :delivery_date_id
+    validates :area_id
   end
 end

@@ -34,7 +34,7 @@ RSpec.describe Item, type: :model do
     it "titleがない時は出品できないこと" do
     @item.title = ''
     @item.valid?
-    expect(@item.errors.full_messages).to including( "Title Title cant be black")
+    expect(@item.errors.full_messages).to including( "Title can't be blank")
     end
     it "priceがない時は出品できないこと" do
       @item.price = ''
@@ -54,52 +54,52 @@ RSpec.describe Item, type: :model do
     it "description_itemがない時は出品できないこと" do
       @item.description_item = ''
       @item.valid?
-      expect(@item.errors.full_messages).to including("Description item Description_item cant be black")
+      expect(@item.errors.full_messages).to including("Description item can't be blank")
     end
     it "category_idがない時は出品できないこと" do
       @item.category_id = ''
       @item.valid?
-      expect(@item.errors.full_messages).to including("Category can't be blank")
+      expect(@item.errors.full_messages).to including("Category is not a number")
     end
     it "category_idが1の時は出品できないこと" do
     @item.category_id = 1
     @item.valid?
-    expect(@item.errors.full_messages).to including("Category Category cant be black")
+    expect(@item.errors.full_messages).to including("Category must be other than 1")
     end
     it "shipping_idがない時は出品できないこと" do
     @item.shipping_id = ''
     @item.valid?
-    expect(@item.errors.full_messages).to including("Shipping can't be blank")
+    expect(@item.errors.full_messages).to including("Shipping is not a number")
     end
     it "shipping_idが1の時は出品できないこと" do
       @item.shipping_id = 1
       @item.valid?
-      expect(@item.errors.full_messages).to including("Shipping Shipping cant be black")
+      expect(@item.errors.full_messages).to including("Shipping must be other than 1")
       end
       it "area_idがない時は出品できないこと" do
       @item.area_id = ''
       @item.valid?
-      expect(@item.errors.full_messages).to including("Area can't be blank")
+      expect(@item.errors.full_messages).to including("Area is not a number")
       end
       it "area_idが1の時は出品できないこと" do
         @item.area_id = 1
         @item.valid?
-        expect(@item.errors.full_messages).to including("Area Area cant be black")
+        expect(@item.errors.full_messages).to including("Area must be other than 1")
         end
         it "delivery_date_idがない時は出品できないこと" do
         @item.delivery_date_id = ''
         @item.valid?
-        expect(@item.errors.full_messages).to including("Delivery date can't be blank")
+        expect(@item.errors.full_messages).to including("Delivery date is not a number")
         end
         it "delivery_date_idが1の時は出品できないこと" do
           @item.delivery_date_id = 1
           @item.valid?
-          expect(@item.errors.full_messages).to including("Delivery date Delivery_date cant be black")
+          expect(@item.errors.full_messages).to including("Delivery date must be other than 1")
           end
         it "imageがない時は出品できないこと" do
           @item.image = nil
           @item.valid?
-          expect(@item.errors.full_messages).to including("Image Image cant be black")
+          expect(@item.errors.full_messages).to including("Image can't be blank")
         end
 
 
