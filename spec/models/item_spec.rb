@@ -13,19 +13,19 @@ RSpec.describe Item, type: :model do
     @item.valid?
     expect(@item).to be_valid
   end
-    it "category_idが1意外なら出品できること"do
+    it "category_idが1以外なら出品できること"do
     @item.category_id = 2
     expect(@item).to be_valid
     end
-    it "sipping_idが1意外なら出品できること"do
+    it "sipping_idが1以外なら出品できること"do
     @item.shipping_id = 2
     expect(@item).to be_valid
     end
-    it "area_idが1意外なら出品できること"do
+    it "area_idが1以外なら出品できること"do
     @item.area_id = 2
     expect(@item).to be_valid
     end
-    it "delivery_date_idが1意外なら出品できること"do
+    it "delivery_date_idが1以外なら出品できること"do
     @item.delivery_date_id = 2
     expect(@item).to be_valid
     end
@@ -42,30 +42,30 @@ RSpec.describe Item, type: :model do
       expect(@item.errors.full_messages).to including( "Price can't be blank")
     end
     it "priceが300以下の時は出品できないこと" do
-      @item.price = '200'
+      @item.price = 200
       @item.valid?
-      expect(@item.errors.full_messages).to including( "Price out of setting range")
+      expect(@item.errors.full_messages).to including("Price out of setting range")
     end
     it "priceが9,9999,999以上の時は出品できないこと" do
-      @item.price = '100000000'
+      @item.price = 100000000
       @item.valid?
-      expect(@item.errors.full_messages).to including( "Price out of setting range")
+      expect(@item.errors.full_messages).to including("Price out of setting range")
     end
     it "priceが英語だけの時は出品できないこと" do
       @item.price = 'abcd'
       @item.valid?
- 
+     
       expect(@item.errors.full_messages).to including("Price out of setting range")
     end
     it "priceが半角英数混合の時は出品できないこと" do
       @item.price = 'ab1000'
       @item.valid?
-      expect(@item.errors.full_messages).to including("Price out of setting range")
+      expect(@item.errors.full_messages).to including("Price  half-width number")
     end
     it "priceが全角の時は出品できないこと" do
       @item.price = '１０００'
       @item.valid?
-      expect(@item.errors.full_messages).to including("Price out of setting range" )
+      expect(@item.errors.full_messages).to including("Price  half-width number")
     end
     it "description_itemがない時は出品できないこと" do
       @item.description_item = ''

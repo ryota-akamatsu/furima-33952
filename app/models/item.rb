@@ -15,7 +15,7 @@ class Item < ApplicationRecord
     validates :price
     
     validates_inclusion_of :price,in: 300..9999999, message: 'out of setting range'
-    validates :price,format:{with:/\A[0-9]+\z/}
+    validates :price,numericality: {with:/\A[0-9]+\z/, message: " half-width number"}
   
   end
   with_options numericality:  {other_than: 1}do
