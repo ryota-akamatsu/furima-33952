@@ -18,9 +18,11 @@ class User < ApplicationRecord
          validates :last_name,
                format: {with:/\A[ぁ-んァ-ン一-龥]+\z/,message: 'first name cant be black'}
          validates :first_name_kana,
-               format: {with:/[\p{katakana}　ー－&&[^ -~｡-ﾟ]]+/,message: 'Full-width characters'}
+               format: {with:/[\p{katakana}ー－&&[^ -~｡-ﾟ]]+/,message: 'Full-width characters'}
         validates :last_name_kana,
-               format: {with:/[\p{katakana}　ー－&&[^ -~｡-ﾟ]]+/,message: 'Full-width characters'}
+               format: {with:/[\p{katakana}ー－&&[^ -~｡-ﾟ]]+/,message: 'Full-width characters'}
+        validates :password,
+               format:{with:/\A(?=.*?[a-z])(?=.*?[A-Z])(?=.*?[\d])\w{6,12}\z/,message:'must be a mixture of alphanumeric characters'}
         end
       end
 
