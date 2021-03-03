@@ -34,88 +34,87 @@ RSpec.describe Item, type: :model do
     it "titleがない時は出品できないこと" do
     @item.title = ''
     @item.valid?
-    expect(@item.errors.full_messages).to including( "Title can't be blank")
+    expect(@item.errors.full_messages).to including( "商品名を入力してください")
     end
     it "priceがない時は出品できないこと" do
       @item.price = ''
       @item.valid?
-      expect(@item.errors.full_messages).to including( "Price can't be blank")
+      expect(@item.errors.full_messages).to including("価格を入力してください")
     end
     it "priceが300以下の時は出品できないこと" do
       @item.price = 200
       @item.valid?
-      expect(@item.errors.full_messages).to including("Price out of setting range")
+      expect(@item.errors.full_messages).to including("価格は一覧にありません")
     end
     it "priceが9,9999,999以上の時は出品できないこと" do
       @item.price = 100000000
       @item.valid?
-      expect(@item.errors.full_messages).to including("Price out of setting range")
+      expect(@item.errors.full_messages).to including("価格は一覧にありません")
     end
     it "priceが英語だけの時は出品できないこと" do
       @item.price = 'abcd'
       @item.valid?
-     
-      expect(@item.errors.full_messages).to including("Price out of setting range")
+      expect(@item.errors.full_messages).to including("価格は数値で入力してください")
     end
     it "priceが半角英数混合の時は出品できないこと" do
       @item.price = 'ab1000'
       @item.valid?
-      expect(@item.errors.full_messages).to including("Price  half-width number")
+      expect(@item.errors.full_messages).to including("価格は数値で入力してください")
     end
     it "priceが全角の時は出品できないこと" do
       @item.price = '１０００'
       @item.valid?
-      expect(@item.errors.full_messages).to including("Price  half-width number")
+      expect(@item.errors.full_messages).to including( "価格は数値で入力してください")
     end
     it "description_itemがない時は出品できないこと" do
       @item.description_item = ''
       @item.valid?
-      expect(@item.errors.full_messages).to including("Description item can't be blank")
+      expect(@item.errors.full_messages).to including("商品説明を入力してください")
     end
     it "category_idがない時は出品できないこと" do
       @item.category_id = ''
       @item.valid?
-      expect(@item.errors.full_messages).to including("Category is not a number")
+      expect(@item.errors.full_messages).to including("カテゴリーは数値で入力してください")
     end
     it "category_idが1の時は出品できないこと" do
     @item.category_id = 1
     @item.valid?
-    expect(@item.errors.full_messages).to including("Category must be other than 1")
+    expect(@item.errors.full_messages).to including("カテゴリーは1以外の値にしてください")
     end
     it "shipping_idがない時は出品できないこと" do
     @item.shipping_id = ''
     @item.valid?
-    expect(@item.errors.full_messages).to including("Shipping is not a number")
+    expect(@item.errors.full_messages).to including("送料は数値で入力してください")
     end
     it "shipping_idが1の時は出品できないこと" do
       @item.shipping_id = 1
       @item.valid?
-      expect(@item.errors.full_messages).to including("Shipping must be other than 1")
+      expect(@item.errors.full_messages).to including("送料は1以外の値にしてください")
       end
       it "area_idがない時は出品できないこと" do
       @item.area_id = ''
       @item.valid?
-      expect(@item.errors.full_messages).to including("Area is not a number")
+      expect(@item.errors.full_messages).to including("都道府県は数値で入力してください")
       end
       it "area_idが1の時は出品できないこと" do
         @item.area_id = 1
         @item.valid?
-        expect(@item.errors.full_messages).to including("Area must be other than 1")
+        expect(@item.errors.full_messages).to including("都道府県は1以外の値にしてください")
         end
         it "delivery_date_idがない時は出品できないこと" do
         @item.delivery_date_id = ''
         @item.valid?
-        expect(@item.errors.full_messages).to including("Delivery date is not a number")
+        expect(@item.errors.full_messages).to including("発送日は数値で入力してください")
         end
         it "delivery_date_idが1の時は出品できないこと" do
           @item.delivery_date_id = 1
           @item.valid?
-          expect(@item.errors.full_messages).to including("Delivery date must be other than 1")
+          expect(@item.errors.full_messages).to including("発送日は1以外の値にしてください")
           end
         it "imageがない時は出品できないこと" do
-          @item.image = nil
+          @item.images = nil
           @item.valid?
-          expect(@item.errors.full_messages).to including("Image can't be blank")
+          expect(@item.errors.full_messages).to including("画像を入力してください")
         end
 
 
