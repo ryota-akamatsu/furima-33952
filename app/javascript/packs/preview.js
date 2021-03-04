@@ -11,6 +11,7 @@ if (document.URL.match( /new/ ) || document.URL.match( /edit/ )) {
 
    
       const blobImage = document.createElement('img');
+      
       blobImage.setAttribute('src', blob);
 
       const inputHTML = document.createElement('input')
