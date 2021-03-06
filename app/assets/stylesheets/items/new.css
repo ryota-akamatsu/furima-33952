@@ -227,3 +227,11 @@
 .inc {
   font-size: 13px;
 }
+
+/* タグ */
+.tag-field{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin-top: 10px;
+}

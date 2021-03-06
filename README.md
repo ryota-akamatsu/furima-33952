@@ -31,6 +31,8 @@
 ### Association
 - has_one    :order
 - belongs_to :user
+- has_many :item_tag
+- has_many :tags
 
 ##ordersテーブル
 |  Column     | Type       | Options                  |
@@ -57,3 +59,23 @@
 
 ### Association
 - belongs_to  :order
+##tagsテーブル
+|  Column     | Type      | Options                 |
+| ----------- | ---------- | -----------------------|
+|name         |   string   |     NOT NULL           |
+
+
+
+### Association
+- has_many :item_tag_relations
+- has_many :item
+##item_tagテーブル
+|  Column     | Type      | Options                 |
+| ----------- | ---------- | -----------------------|
+|item_id      | references |     foreign_key: true  |
+|tag_id      | references |     foreign_key: true  |
+
+
+### Association
+- belongs_to :item
+- belongs_to :tag

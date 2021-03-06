@@ -8,22 +8,25 @@ class Item < ApplicationRecord
   belongs_to :shipping
   belongs_to :delivery_date
   belongs_to :area
+  has_many :item_tag_relations
+  has_many :tags, through: :tweet_tag_relations
 
-  with_options presence: true do
-    validates :images
-    validates :description_item
-    validates :title
-    validates :price
+
+  # with_options presence: true do
+  #   validates :images
+  #   validates :description_item
+  #   validates :title
+  #   validates :price
     
-    validates_inclusion_of :price,in: 300..9999999
-    validates :price,numericality: {with:/\A[0-9]+\z/, }
+  #   validates_inclusion_of :price,in: 300..9999999
+  #   validates :price,numericality: {with:/\A[0-9]+\z/, }
   
-  end
-  with_options numericality:  {other_than: 1}do
-    validates :category_id 
-    validates :product_status_id
-    validates :shipping_id
-    validates :delivery_date_id
-    validates :area_id
-  end
+  # end
+  # with_options numericality:  {other_than: 1}do
+  #   validates :category_id 
+  #   validates :product_status_id
+  #   validates :shipping_id
+  #   validates :delivery_date_id
+  #   validates :area_id
+  # end
 end
