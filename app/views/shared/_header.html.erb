@@ -3,8 +3,12 @@
   <div class='search-bar-contents'>
     <%= link_to image_tag("furima-logo-color.png", class:"furima-icon"), "/" %>
     <form class="search-form" action="#">
+    <%= search_form_for @p, url:  search_items_path do |f| %>
+  <%= f.label :title_eq, '商品名' %>
+  <%= f.collection_select :title_eq, @item_title ,:title, :title, include_blank: '指定なし' %>
       <input class='input-box' placeholder='キーワードから探す'>
       <button class="search-button">
+      <% end %>
         <%= image_tag "search.png", class:"search-icon" %>
       </button>
     </form>
@@ -17,7 +21,7 @@
     <ul class='lists-right'>
      
       <% if user_signed_in? %>
-      <li><%= link_to current_user.nickname, "#{current_user.nickname}", class: "user-nickname"%> </li> 
+      <li><%=  link_to "#{current_user.nickname}さん","/user/#{current_user.id}" , class: "user-nickname"%> </li> 
       <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: "logout"%> </li>
     <%else%>
       <li><%= link_to 'ログイン', new_user_session_path, class: "login" %></li>

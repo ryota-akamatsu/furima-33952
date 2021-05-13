@@ -2,9 +2,10 @@ class ItemsController < ApplicationController
   before_action :authenticate_user!,except:[:index,:show]
   before_action :items_move,only:[:show,:edit,:update,:destroy]
   before_action :edit_move_to_index,only:[:edit,:update,:destroy]
-  
+  before_action :search_item, only: [:index, :search]
   def index
     @item = Item.all.order("created_at DESC")
+    set_product_column       
   end
 
   def new
@@ -44,6 +45,9 @@ class ItemsController < ApplicationController
   end
 
   def search
+    
+      @item = @p.result.includes(:category)  
+   
     return nil if params[:keyword] == ""
     tag = Tag.where(['name LIKE ?', "%#{params[:keyword]}%"] )
     render json:{ keyword: tag }
@@ -62,6 +66,10 @@ class ItemsController < ApplicationController
   def items_move
     @item = Item.find(params[:id])
   end
-  
-  
+  def search_item
+    @p = Item.ransack(params[:q]) 
+  end
+  def set_product_column
+    @item_title = Item.select("title").distinct  
+  end
 end
